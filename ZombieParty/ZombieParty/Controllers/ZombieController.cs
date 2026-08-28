@@ -34,6 +34,7 @@ namespace ZombieParty.Controllers
             if (ModelState.IsValid)
             {
                 _baseDonnees.Zombies.Add(zombie);
+                TempData["Success"] = $"Zombie {zombie.Name} added";
                 return this.RedirectToAction("Index");
             }
 
