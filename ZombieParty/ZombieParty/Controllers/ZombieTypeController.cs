@@ -38,6 +38,7 @@ namespace ZombieParty.Controllers
             {
                 // Ajouter à la BD
                 _baseDonnees.ZombieTypes.Add(zombieType);
+                TempData["Success"] = $"{zombieType.TypeName} zombie type added";
                 return this.RedirectToAction("Index");
 
             }
