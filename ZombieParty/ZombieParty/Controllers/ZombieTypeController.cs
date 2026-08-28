@@ -20,8 +20,8 @@ namespace ZombieParty.Controllers
             //    new ZombieType(){TypeName= "Virus", Id=1},
             //    new ZombieType(){TypeName= "Contact", Id=2}
             //};
-            this.ViewBag.MaListe = _baseDonnees.ZombieTypes.ToList();
-            return View();
+            
+            return View(_baseDonnees.ZombieTypes.ToList());
         }
 
         //GET CREATE
