@@ -27,7 +27,11 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td width="80%">@item.TypeName</td>
+                    <td width="80%">
+                        <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">
+                            @item.TypeName
+                        </a>
+                    </td>
                     <td class="text-center">
                         <div class="w-75 btn-group" role="group">
                             <a class="btn btn-warning mx-2">
