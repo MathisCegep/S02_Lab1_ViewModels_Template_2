@@ -51,9 +51,13 @@ namespace ZombieParty.Controllers
             ZombieTypeVM zombieTypeVM = new()
             {
                 ZombieType = new(),
-                ZombiesList = _baseDonnees.Zombies.Where(z => z.ZombieTypeId == id).ToList() // remplis la liste de zombie de zombie avec le bon type
+                ZombiesList = _baseDonnees.Zombies.Where(z => z.ZombieTypeId == id).ToList(), // remplis la liste de zombie de zombie avec le bon type
+                ZombiesCount = new(),
+                PointsAverage = new()
             };
 
+            zombieTypeVM.ZombiesCount = zombieTypeVM.ZombiesList.Count();
+            zombieTypeVM.PointsAverage = zombieTypeVM.ZombiesList.Average(z => z.Point);
             zombieTypeVM.ZombieType = _baseDonnees.ZombieTypes.FirstOrDefault(zt => zt.Id == id); // definie le type du zombie dans la classe
             return View(zombieTypeVM); // retourne la liste de zombie (viewmodel)
 
