@@ -20,8 +20,8 @@ namespace ZombieParty.Controllers
             //    new ZombieType(){TypeName= "Virus", Id=1},
             //    new ZombieType(){TypeName= "Contact", Id=2}
             //};
-            this.ViewBag.MaListe = _baseDonnees.ZombieTypes.ToList();
-            return View();
+            
+            return View(_baseDonnees.ZombieTypes.ToList());
         }
 
         //GET CREATE
@@ -44,6 +44,23 @@ namespace ZombieParty.Controllers
             }
 
             return this.View(zombieType);
+        }
+
+        public IActionResult Details(int id)
+        {
+            ZombieTypeVM zombieTypeVM = new()
+            {
+                ZombieType = new(),
+                ZombiesList = _baseDonnees.Zombies.Where(z => z.ZombieTypeId == id).ToList(), // remplis la liste de zombie de zombie avec le bon type
+                ZombiesCount = new(),
+                PointsAverage = new()
+            };
+
+            zombieTypeVM.ZombiesCount = zombieTypeVM.ZombiesList.Count();
+            zombieTypeVM.PointsAverage = zombieTypeVM.ZombiesList.Average(z => z.Point);
+            zombieTypeVM.ZombieType = _baseDonnees.ZombieTypes.FirstOrDefault(zt => zt.Id == id); // definie le type du zombie dans la classe
+            return View(zombieTypeVM); // retourne la liste de zombie (viewmodel)
+
         }
 
     }
